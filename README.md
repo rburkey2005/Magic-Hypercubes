@@ -15,7 +15,7 @@ Being an unfortunately naturally-dismissive person, I apparently said something 
 
 Brett tells me he found this incident memorable, or at least memorable enough to remind me of it after 30+ years, though when he recounted it to me I'm sad to say I had no recollection of it.  It sounds like the kind of obnoxious thing I might have said and done back in the day.  Or today.  Still, it made me curious enough to look into the issue again, so as to reconstruct the method I must have used back then and indirectly, to inflict it on other people now.
 
-I don't know what magic cube I showed Brett back then, but likely it was something like this 3&times;3&times;3 cube, in which each "row" (in any of the 3 dimension) adds up to 39:
+I don't know what magic cube I showed Brett back then, but likely it was something like this 3&times;3&times;3 cube, in which each "row" (in any of the 3 dimensions) adds up to 39:
 
     11  22   6      21   8  10       7   9  23
     25   0  14       2  13  24      12  26   1
