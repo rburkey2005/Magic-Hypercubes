@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 program = "magicLine.py"
-revision = 0.14
+revision = 0.15
 """
 Copyright:  None.  This software is declared to be in the Public Domain by its 
             author, Ronald S. Burkey.
@@ -14,7 +14,7 @@ History:    2022-07-12 RSB  Began
                             well.
             2022-07-15 RSB  Tries to track free memory and abort if there's
                             not enough.  Should allow running with very large
-                            maxN without danger of crashing system. 
+                            maxdim without danger of crashing system. 
             2022-07-19 RSB  molsPower2() improved to produce self-complementary
                             MOLS P and Q, rather than just diagonal MOLS.
             2022-07-27 RSB  Removed W=10 from among the hard-coded cases to
@@ -39,6 +39,7 @@ History:    2022-07-12 RSB  Began
             2022-08-03 RSB  (0.14) Usage of hardcoded MOLS P and Q cleaned up.
                             Hardcoded MOLS moved into a separate imported
                             file, hardcodedMOLS.py.
+            2024-09-30 RSB  Cleaned up the cli options a little.
 """
 
 import sys
@@ -80,7 +81,7 @@ print()
 print("Program", program, "revision", revision)
 
 # Set defaults for command-line settings.
-maxN = 3    # Maximum dimension N for which we want to generate a magic N-cube.
+maxdim = 3    # Maximum dimension N for which we want to generate a magic N-cube.
             # Must be > 2.
 W = 3       # Width of the hypercubes.  I.e., the magic squares are WxW, the
             # magic cubes are WxWxW, and so on.  Must be > 2.
@@ -94,14 +95,15 @@ qrTest = 0
 engTest = ""
 try:
     error = False
+    help = False
     for param in sys.argv[1:]:
         fields = param.split("=")
         switch = fields[0]
         value = ""
         if len(fields) > 1:
             value = fields[1]
-        if switch == "--dimension":
-            maxN = int(value)
+        if switch == "--maxdim":
+            maxdim = int(value)
         elif switch == "--width":
             W = int(value)
         elif switch == "--debug":
@@ -120,19 +122,26 @@ try:
             qrTest = int(value)
         elif switch == "--eng-test":
             engTest = value
+        elif switch == "--help":
+            help = True
+            break
         else:
+            print()
             print("=== Unknown switch:", param, "===")
             error = True
 except:
     error = True
-if W < 3 or maxN < 2:
+if W < 3 or maxdim < 2:
     error = True
-if error:
-    print("This program prints N-dimensional magic WxWx...xW hypercubes for")
-    print("N=3,...,maxN. Usage:")
+if error or help:
+    print("This program prints N-dimensional WxWx...xW magic hypercubes for")
+    print("N=2, N=3, ..., N=maxdim (default maxdim=3, default W=2).  Usage:")
+    print()
     print("     %s [OPTIONS]" % program)
+    print()
     print("The available OPTIONS are:")
-    print("--dimension=N     Sets maxN (default 3, mininum 2).")
+    print("--help            Show this menu.")
+    print("--maxdim=N        Sets maxdim (default 3, mininum 2).")
     print("--width=N         Sets W (default 3, minimum 3). Not all values")
     print("                  of W are supported.  W=6 is impossible.")
     print("--partial         Check for partially- rather than fully-magic.")
@@ -152,7 +161,10 @@ if error:
     print("--eng-test=L      Adds parameters for whatever engineering tests")
     print("                  I feel like permforming at any given time.")
     print()
-    sys.exit(1)
+    if error:
+        sys.exit(1)
+    else:
+        sys.exit(0)
 
 print("Width", W, "======================================================")
 
@@ -946,10 +958,10 @@ def constructDimension(M, A, P, Q):
     return Mprime, Aprime
 
 # Main loop =============================================================
-# Construct higher-dimensional objects for dimensions 2 through maxN, 
+# Construct higher-dimensional objects for dimensions 2 through maxdim, 
 # starting from the given seeds for dimension 1.
 wPower = 1
-for N in range(2, maxN+1):
+for N in range(2, maxdim+1):
     startTime = time.time()
     print()
     print("Dimension", N)

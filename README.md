@@ -23,7 +23,7 @@ I don't know what magic cube I showed Brett back then, but likely it was somethi
 
 The "diagonals" also add up to 39, as long as you'll restrict your notion of what constitutes a "diagonal" only to those that pass through the center of the cube; i.e., those that pass through the cell containing the value 13.
 
-<blockquote><b>Disclaimer:</b>  The original incident was long before the web (in the form it exists today), so we couldn't just have looked up "magic cubes" in some then-nonexistent search engine.  And <i>nowadays</i> I was just recreating this for fun, so I made a point to maintain my original level of ignorance and <i>not</i> to research it on the web.  So I'm sure that everything I have to say on the subject has been known for a very long time ... perhaps hundreds of years.  But I insist upon remaining uninformed.  In the likely event you know something about the topic, I beg you not to tell me about it.  Thanks for your cooperation!</blockquote>
+<blockquote><b>Disclaimer:</b>  The original incident was long before the web (in the form it exists today), so we couldn't just have looked up "magic cubes" in some then-nonexistent search engine.  And <i>nowadays</i> I was just recreating this for fun, so I made a point to maintain my original level of ignorance and <i>not</i> to research it on the web.  As a result, I'm sure that everything I have to say on the subject has been known for a very long time &mdash; perhaps hundreds of years &mdash; and that the entire exercise was pointless in any larger sense.  But I insist upon remaining uninformed.  In the event you know something about the topic, I beg you not to tell me about it.  Instead, just smirk privately about how dumb I am for wasting all of this effort without reading up about it.  Thanks for your cooperation!</blockquote>
 
 However, the topic of this discussion is "magic *hyper*cubes", and not merely magic cubes.  A magic hypercube might exist in 4, 5, or indeed any number of dimensions, and not just the 2 or 3 dimensions in the examples above.
 
@@ -169,11 +169,17 @@ To use the provided software, install Python 3 if not already installed, then do
 
 The actual code for constructing an (*N*+1)-dimensional magic hypercube from an *N*-dimensional one is just the function ``constructDimension()`` which is only about 40 lines long.  The remaining thousands of lines of code are for constructing the MOLS *P* and *Q*, double-checking results, engineering test cases that I should probably remove, and so on.
 
+The command 
+
+    magicLine.py --help
+
+shows a list of available options.
+
 Example usage:  The command
 
-    magicLine.py --width=5 --dimension=7
+    magicLine.py --width=5 --maxdim=7
 
-would construct, double-check, and display magic hypercubes of geometries 5×5 (i.e., a magic square), 5×5×5, 5×5×5×5, 5×5×5×5×5, 5×5×5×5×5×5, and 5×5×5×5×5×5×5 in a somewhat human-readable form.  
+would construct, double-check, and display magic hypercubes of width 5 for dimensions 2 through 7 in a somewhat human-readable form; i.e., geometries 5×5 (a magic square), 5×5×5, 5×5×5×5, 5×5×5×5×5, 5×5×5×5×5×5, and 5×5×5×5×5×5×5.  
 
 Adding the command-line switch ``--python`` would cause the hypercubes to be printed as Python arrays instead of the supposedly-humanly-readable form.
 
